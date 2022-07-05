@@ -64,7 +64,7 @@ class Product(models.Model):
     image1 = CloudinaryField('image')
     image2 = CloudinaryField('image',blank=True, null=True)
     image3 = CloudinaryField('image', blank=True, null=True)
-    description = models.TextField(max_length=10000)
+    description = models.TextField(max_length=4000)
     new_price = models.FloatField()
     old_price = models.FloatField()
     is_available = models.BooleanField(default = True)
