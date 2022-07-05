@@ -6980,7 +6980,7 @@ input.quickview__value--number {
   margin-left: 1.5rem;
 }
 .counterup__banner__bg2 {
-  background: url(../img/banner/banner-bg4.png);
+  background: url("https://cdn.pixabay.com/photo/2016/12/08/14/49/relaxing-1891879__340.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
