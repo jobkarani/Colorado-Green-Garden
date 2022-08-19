@@ -1596,10 +1596,10 @@ select {
   color: var(--primary-color);
 }
 .text__secondary {
-  color: #3EC70B;
+  color: #82b440;
 }
 .text__secondary2 {
-  color: #3EC70B;
+  color: #82b440;
 }
 .position__relative {
   position: relative;
@@ -3365,7 +3365,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 .home1__slider--bg {
-  background: url("https://cdn.pixabay.com/photo/2017/10/13/08/04/background-2847041__340.jpg");
+  background: url("https://images.unsplash.com/photo-1630514599611-e506e988c166?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTd8fG1hcmlqdWFuYXxlbnwwfDB8MHx8&auto=format&fit=crop&w=500&q=60");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -3389,7 +3389,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 .home1__slider--bg.three {
-  background: url('https://cdn.pixabay.com/photo/2018/03/18/14/27/eat-3236971__340.jpg');
+  background: url('https://images.unsplash.com/photo-1598973728600-0aea22ca8b12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTV8fG1hcmlqdWFuYXxlbnwwfDB8MHx8&auto=format&fit=crop&w=500&q=60');
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -4202,7 +4202,7 @@ input[type="number"]::-webkit-outer-spin-button {
   transform: scale(1.04);
 }
 .banner__items--thumbnail:hover .banner__items--content__link {
-  color: #3EC70B;
+  color: #82b440;
 }
 .banner__items--content {
   position: absolute;
@@ -4314,7 +4314,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .banner__items--content__link {
   line-height: 2.4rem;
-  color: var(--text-gray-color);
+  color: #d09e29;
 }
 .banner__items--content__link.style2 {
   font-size: 1.4rem;
@@ -4669,7 +4669,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .banner__bideo--play__icon {
   width: 5rem;
   height: 5rem;
-  background: #3EC70B;
+  background: #82b440;
   color: var(--white-color);
   border-radius: 50%;
   display: -webkit-box;
@@ -6186,7 +6186,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 .copyright__content--link:hover {
-  color:#3EC70B;
+  color:#82b440;
 }
 .footer__payment {
   line-height: 1;
@@ -9349,7 +9349,7 @@ input.quickview__value--number {
 }
 .breadcrumb__link {
   font-size: 1.3rem;
-  color: #3EC70B;
+  color: #82b440;
 }
 .readcrumb__chevron-icon {
   color: #737373;
@@ -9384,10 +9384,10 @@ input.quickview__value--number {
   width: 100%;
 }
 .order__summary--toggle__text {
-  color: #3EC70B;
+  color: #82b440;
 }
 .order__summary--toggle__icon {
-  color: #3EC70B;
+  color: #82b440;
   vertical-align: middle;
   line-height: 1.5rem;
   margin-right: 1rem;
@@ -9564,7 +9564,7 @@ details > summary::-webkit-details-marker {
 }
 .previous__link--content {
   margin-left: 2rem;
-  color: #3EC70B;
+  color: #82b440;
 }
 .checkout__footer {
   border: 0;
@@ -9582,7 +9582,7 @@ details > summary::-webkit-details-marker {
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
-  background: #3EC70B;
+  background: #82b440;
   color: var(--white-color);
   text-align: center;
   border-radius: 50%;
@@ -9920,10 +9920,10 @@ details > summary::-webkit-details-marker {
   margin-bottom: 0;
 }
 .account__menu--list:hover {
-  color: #3EC70B;
+  color: #82b440;
 }
 .account__menu--list.active {
-  color: #3EC70B;
+  color: #82b440;
 }
 @media only screen and (min-width: 992px) {
   .account__menu--list {
@@ -10001,7 +10001,7 @@ details > summary::-webkit-details-marker {
 }
 .account__content--title {
   font-weight: 600;
-  color: #3EC70B;
+  color: #82b440;
 }
 .account__table {
   width: 100%;

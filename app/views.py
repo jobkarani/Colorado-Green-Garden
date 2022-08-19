@@ -294,8 +294,6 @@ def add_cart(request, product_id):
 
     return redirect('cart')
 
-
-
 @login_required(login_url="/accounts/login/")
 def remove_cart(request, product_id,cart_item_id):
     if request.user.is_authenticated and request.user.id:
