@@ -2300,19 +2300,28 @@ body.overlay__active::before {
 .main__logo--title {
   line-height: 2rem;
 }
-@media only screen and (min-width: 410px) {
-  .main__logo--title > a > p{
-    font-style: italic;
-    font-size: large;
-    font-weight:900;
-    color: #0B4619;
-  }
-}
+
 .main__logo--title > a > p{
   font-style: italic;
   font-size: x-large;
   font-weight:900;
   color: #0B4619;
+}
+@media only screen and (min-width: 410px) {
+  .main__logo--title > a > p{
+    font-style: italic;
+    font-size: x-large;
+    font-weight:900;
+    color: #0B4619;
+  }
+}
+@media only screen and (min-width: 350px) {
+  .main__logo--title > a > p{
+    font-style: italic;
+    font-size: small;
+    font-weight:900;
+    color: #0B4619;
+  }
 }
 @media only screen and (max-width: 575px) {
   .header__shipping--wrapper {
@@ -3377,7 +3386,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 .home1__slider--bg.two {
-  background: url('https://cdn.pixabay.com/photo/2022/06/03/07/21/food-supplement-7239595__340.jpg');
+  background: url('https://justcannabis.cc/wp-content/uploads/2022/07/jc-july2022.jpg');
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -3389,7 +3398,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 .home1__slider--bg.three {
-  background: url('https://images.unsplash.com/photo-1598973728600-0aea22ca8b12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTV8fG1hcmlqdWFuYXxlbnwwfDB8MHx8&auto=format&fit=crop&w=500&q=60');
+  background: url('https://justcannabis.cc/wp-content/uploads/2022/07/home-banner-1.jpg');
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
