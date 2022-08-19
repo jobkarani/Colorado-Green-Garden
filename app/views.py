@@ -19,7 +19,6 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
 from decouple import config
 
-from .mpesa_credentials import MpesaAccessToken, LipaNaMpesaPassword
 from .models import MpesaPayment
 
 # auth 
@@ -265,12 +264,6 @@ def add_cart(request, product_id):
             for item in request.POST:
                 key = item
                 value =request.POST[key]
-                try:
-                    variation = Variation.objects.get(product=product, variation_category__iexact=key, variation_value__iexact=value)
-                    product_variation.append(variation)
-                except:
-                    pass
-
         try:
             cart = Cart.objects.get(user=request.user,cart_id=_cart_id(request)) #get cart using cart_id present in the session
         except Cart.DoesNotExist:
@@ -285,26 +278,7 @@ def add_cart(request, product_id):
             cart_item = CartItem.objects.filter(user=request.user,product=product, cart=cart)
             ex_var_list = []
             id = []
-            for item in cart_item:
-                existing_variation = item.variations.all()
-                ex_var_list.append(list(existing_variation))
-                id.append(item.id)
-
         
-            if product_variation in ex_var_list:
-                # increase CartItem qty
-                index = ex_var_list.index(product_variation)
-                item_id = id[index]
-                item = CartItem.objects.get(product=product, id=item_id)
-                item.quantity += 1
-                item.save()
-            else:
-                # add a new cartitem
-                item = CartItem.objects.create(product=product, quantity=1, cart=cart, user=request.user)
-                if len(product_variation) > 0:
-                    item.variations.clear()
-                    item.variations.add(*product_variation)
-                item.save()
         else:
             cart_item = CartItem.objects.create(
                 product = product,
@@ -539,83 +513,6 @@ def place_order(request,total=0, quantity=0,):
     else:
         return redirect('checkout')
 
-
-@login_required
-def userPayment(request):
-    current_user = request.user
-
-    cart_items = CartItem.objects.filter(user=current_user)
-    total = 0
-    quantity = 0
-    sub_total = 0
-
-    for cart_item in cart_items:
-        total += (cart_item.product.new_price*cart_item.quantity)
-        quantity += cart_item.quantity
-        sub_total = total
-        cart_count = cart_items.count()
-    
-    if request.method == 'POST':
-        mpesa_form = PaymentForm(
-            request.POST, request.FILES, instance=request.user)
-        if mpesa_form.is_valid():
-            access_token = MpesaAccessToken().validated_mpesa_access_token
-            stk_push_api_url = config("STK_PUSH_API_URL")
-            headers = {
-                "Authorization": "Bearer %s" % access_token,
-                "Content-Type": "application/json",
-            }
-           
-            request = {
-                "BusinessShortCode": LipaNaMpesaPassword().BusinessShortCode,
-                "Password": LipaNaMpesaPassword().decode_password,
-                "Timestamp": LipaNaMpesaPassword().payment_time,
-                "TransactionType": "CustomerPayBillOnline",
-                "Amount": "1",
-                "PartyA": phoneSanitize(request.POST.get('phone')),
-                "PartyB": LipaNaMpesaPassword().BusinessShortCode,
-                "PhoneNumber": phoneSanitize(request.POST.get('phone')),
-                # "CallBackURL": "https://mpesa-api-python.herokuapp.com/api/v1/mpesa/callback/",
-                "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
-                "AccountReference": "Healthy Living",
-                "TransactionDesc": "Testing stk push",
-            }
-            response = requests.post(
-                stk_push_api_url, json=request, headers=headers)
-
-            print(response.text)
-
-            mpesa_form.save()
-            # messages.success(
-            # request, 'Your Payment has been made successfully')
-            user = User.objects.get(id=current_user.id)
-            user.save()
-            # time.sleep(10)
-            return redirect('userPayment')
-    else:
-        mpesa_form = PaymentForm(instance=request.user)
-    context = {
-        'mpesa_form': mpesa_form,
-        'cart_items':cart_items,
-        'sub_total':sub_total,
-        'cart_count':cart_count,
-    }
-    return render(request, 'pay.html', context)
-
-
-def phoneSanitize(phone):
-    if phone.startswith("0"):
-        phone = phone.replace('0','254', 1)
-    elif phone.startswith("+254"):
-        phone = phone.replace('+254','254')
-    elif phone.startswith("+1"):
-        phone = phone.replace('+1','254')
-    elif phone.startswith("7"):
-        phone = phone.replace('7', '2547', 1)
-    print(phone)
-    return phone
-    
-print(phoneSanitize("0112528016"))
 
 def submit_review(request, product_id):
     url = request.META.get('HTTP_REFERER')

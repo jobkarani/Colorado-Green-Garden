@@ -1,4 +1,4 @@
- # Healthy Living
+ # Colorado Green Garden
 #### This is an ecommerce project  19.6.2022
 #### By **JOB KARANI** and **DERRICK MACHARIA**
 ## Description
@@ -7,7 +7,7 @@ This is an ecommerce webapp whereby customers can buy products online and pay vi
 * python3
 * Github
 * Web browser of your choice.
-* Live link to view the project <a href="https://bonjoe.herokuapp.com/">View Healthy Living</a>
+* Live link to view the project <a href="https://bonjoe.herokuapp.com/">View Colorado Green Garden</a>
 ## Known Bugs
 * no bugs known at the moment. 
 ## Technologies Used

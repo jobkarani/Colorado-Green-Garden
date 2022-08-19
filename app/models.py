@@ -79,34 +79,13 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class VariationManager(models.Manager):
-    def colors(self):
-        return super(VariationManager, self).filter(variation_category="color",is_active=True)
 
-    def sizes(self):
-        return super(VariationManager, self).filter(variation_category="size",is_active=True)
 
-variation_category_choice=(
-    ('color', 'color'),
-    ('size', 'size'),
-)
 
-class Variation(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variation_category = models.CharField(max_length=100, choices=variation_category_choice)
-    variation_value = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
-    created_date = models.DateTimeField(auto_now=True)
-
-    objects = VariationManager()
-
-    def __str__(self):
-        return self.variation_value
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     cart_id = models.CharField(max_length=250, blank=False, null=True)
-    variations = models.ManyToManyField(Variation, blank=True)
     date_added = models.DateField(auto_now_add=True)
 
     def __unicode__(self):
@@ -115,7 +94,6 @@ class Cart(models.Model):
 class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variations = models.ManyToManyField(Variation, blank=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
@@ -174,7 +152,6 @@ class OrderProduct(models.Model):
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variations = models.ManyToManyField(Variation, blank=True)
     quantity = models.IntegerField()
     product_price = models.FloatField()
     ordered = models.BooleanField(default=False)
