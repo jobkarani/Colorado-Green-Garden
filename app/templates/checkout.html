@@ -28,47 +28,6 @@
 
 <body>
 
-    <!-- Start preloader -->
-    <!-- <div id="preloader">
-        <div id="ctn-preloader" class="ctn-preloader">
-            <div class="animation-preloader">
-                <div class="spinner"></div>
-                <div class="txt-loading">
-                    <span data-text-preloader="W" class="letters-loading">
-                        W
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-
-                    <span data-text-preloader="L" class="letters-loading">
-                        L
-                    </span>
-
-                    <span data-text-preloader="C" class="letters-loading">
-                        C
-                    </span>
-
-                    <span data-text-preloader="O" class="letters-loading">
-                        O
-                    </span>
-
-                    <span data-text-preloader="M" class="letters-loading">
-                        M
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-                </div>
-            </div>
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
-        </div>
-    </div> -->
-    <!-- End preloader -->
-
     <!-- Start checkout page area -->
     <div class="checkout__page--area">
         <div class="container">
@@ -88,7 +47,7 @@
                                         <span>Show order summary</span>
                                         <svg width="11" height="6" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle__dropdown" fill="currentColor"><path d="M.504 1.813l4.358 3.845.496.438.496-.438 4.642-4.096L9.504.438 4.862 4.534h.992L1.496.69.504 1.812z"></path></svg>
                                     </span>
-                                    <span class="order__summary--final__price">Ksh {{ total }}</span>
+                                    <span class="order__summary--final__price">$ {{ total }}</span>
                                 </span>
                             </summary>
                             <div class="order__summary--section">
@@ -110,7 +69,7 @@
                                                     </div>
                                                 </td>
                                                 <td class=" summary__table--list">
-                                                    <span class="cart__price">Ksh {{cart_item.product.new_price}}</span>
+                                                    <span class="cart__price">$ {{cart_item.product.new_price}}</span>
                                                 </td>
                                             </tr>
                                             {% endfor %}
@@ -136,7 +95,11 @@
                                     <a class="breadcrumb__link" href="{% url 'cart' %}">Cart</a>
                                     <svg class="readcrumb__chevron-icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"></path></svg>
                                 </li>
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 0aeca47e39519b7b54d3f99f91ef9145da78a240
                                 <li class="breadcrumb__item breadcrumb__item--current d-flex align-items-center">
                                     <a class="breadcrumb__text current" href="{% url 'checkout' %}" >Information</a>
                                     <svg class="readcrumb__chevron-icon" xmlns="http://www.w3.org/2000/svg" width="17.007" height="16.831" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"></path></svg>
@@ -252,7 +215,7 @@
                                         </div>
                                     </td>
                                     <td class="cart__table--body__list">
-                                        <span class="cart__price">Ksh {{cart_item.product.new_price}}</span>
+                                        <span class="cart__price">$ {{cart_item.product.new_price}}</span>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -265,7 +228,7 @@
                             <tbody class="checkout__total--body">
                                 <tr class="checkout__total--items">
                                     <td class="checkout__total--title text-left">Subtotal </td>
-                                    <td class="checkout__total--amount text-right">Ksh {{total}}</td>
+                                    <td class="checkout__total--amount text-right">$ {{total}}</td>
                                 </tr>
                                 <tr class="checkout__total--items">
                                     <td class="checkout__total--title text-left">Shipping</td>
@@ -275,7 +238,7 @@
                             <tfoot class="checkout__total--footer">
                                 <tr class="checkout__total--footer__items">
                                     <td class="checkout__total--footer__title checkout__total--footer__list text-left">Total </td>
-                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right">Ksh {{total}}</td>
+                                    <td class="checkout__total--footer__amount checkout__total--footer__list text-right">$ {{total}}</td>
                                 </tr>
                             </tfoot>
                         </table>

@@ -1,4 +1,3 @@
-from ast import Or
 import datetime
 from math import ceil
 from multiprocessing import context
@@ -8,8 +7,6 @@ from tokenize import Pointfloat
 from django.contrib import messages
 from django.db.models import Q
 import requests
-
-import json
 
 from .models import *
 from django.contrib.auth import login, authenticate
@@ -118,7 +115,6 @@ def create_profile(request):
         form = ProfileForm()
     return render(request, 'create_profile.html', {"form": form, "title": title})
 
-
 @login_required(login_url="/accounts/login/")
 def profile(request):
     cart = 0
@@ -126,7 +122,6 @@ def profile(request):
     profile = Profile.objects.filter(user_id=current_user.id).first()
     print(profile)
     product = Product.objects.filter(id=current_user.id).all()
-
     if request.user.is_authenticated and request.user.id:
             cart_items = CartItem.objects.filter(user=request.user, is_active=True)
             products = Product.objects.all().filter(is_available=True)
@@ -291,7 +286,6 @@ def add_cart(request, product_id):
             cart_item = CartItem.objects.filter(user=request.user,product=product, cart=cart)
             ex_var_list = []
             id = []
-
         else:
             cart_item = CartItem.objects.create(
                 product = product,
@@ -322,7 +316,6 @@ def remove_cart(request, product_id,cart_item_id):
                 cart_item.delete()
         except:
             pass
-
     return redirect('cart')
 
 @login_required(login_url="/accounts/login/")

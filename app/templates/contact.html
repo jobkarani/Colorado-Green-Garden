@@ -28,47 +28,6 @@
 
 <body>
 
-    <!-- Start preloader -->
-    <div id="preloader">
-        <div id="ctn-preloader" class="ctn-preloader">
-            <div class="animation-preloader">
-                <div class="spinner"></div>
-                <div class="txt-loading">
-                    <span data-text-preloader="W" class="letters-loading">
-                        W
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-
-                    <span data-text-preloader="L" class="letters-loading">
-                        L
-                    </span>
-
-                    <span data-text-preloader="C" class="letters-loading">
-                        C
-                    </span>
-
-                    <span data-text-preloader="O" class="letters-loading">
-                        O 
-                    </span>
-
-                    <span data-text-preloader="M" class="letters-loading">
-                        M 
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-                </div>
-            </div>
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
-        </div>
-    </div>
-    <!-- End preloader -->
-
     <!-- Start header area -->
     <header class="header__section">
         <div class="header__topbar bg__secondary head">
@@ -85,7 +44,7 @@
                             <li class="header__shipping--text text-white d-sm-2-none"><img
                                     class="header__shipping--text__icon" src="{% static 'assets/img/icon/email.png' %}"
                                     alt="email-icon"> <a class="header__shipping--text__link"
-                                    href="mailto:healthylivingkenya254@gmail.com">healthylivingkenya254@gmail.com</a></li>
+                                    href="mailto:coloradogreengardens@gmail.com">coloradogreengardens@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,7 +166,7 @@
                                     </a>
 
                                 </li>
-                                
+
                                 <li class="header__menu--items style2">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -293,7 +252,7 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-                                
+
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -451,16 +410,16 @@
                     </div>
                     <div class="minicart__text">
                         <h3 class="minicart__subtitle h4"><a href="{{ cart_item.product.get_url }}">{{cart_item.product.name}}</a></h3>
-                        {% if cart_item.variations.all %} 
+                        {% if cart_item.variations.all %}
                         {% for item in cart_item.variations.all %}
                         <span class="color__variant"><b>{{ item.variation_category }} : </b> {{ item.variation_value }}</span>
-                        {% endfor %} 
+                        {% endfor %}
                         {% endif %}
                         <div class="minicart__price">
-                            <span class="current__price">Ksh {{cart_item.product.new_price}} -</span>
-                            <span class="old__price">Ksh {{cart_item.product.new_price}}</span>
+                            <span class="current__price">$ {{cart_item.product.new_price}} -</span>
+                            <span class="old__price">$ {{cart_item.product.new_price}}</span>
                         </div>
-                      
+
                         <div class="minicart__text--footer d-flex align-items-center">
                             <div class="quantity__box minicart__quantity">
                                 <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -469,7 +428,7 @@
                                     <input type="number" class="quantity__number" value="{{ cart_item.quantity }}" data-counter />
                                 </label>
                                 <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
-                                    {% csrf_token %} 
+                                    {% csrf_token %}
                                     {% for item in cart_item.variations.all %}
                                     <input type="hidden" name="{{ item.variation_category |lower }}" value="{{ item.variation_value | capfirst }}">
                                     {% endfor %}
@@ -482,9 +441,9 @@
                 </div>
                 {% endfor %}
             </div>
-           
+
             {% endif %}
-           
+
             <div class="minicart__button d-flex justify-content-center">
                 <a class="primary__btn minicart__button--link" href="{% url 'cart' %}">View cart</a>
                 <a class="primary__btn minicart__button--link" href="{% url 'checkout' %}">Checkout</a>
@@ -524,7 +483,7 @@
 
 
     <main class="main__content_wrapper">
-        
+
         <!-- Start contact section -->
         <section class="contact__section section--padding">
             <div class="container">
@@ -532,10 +491,10 @@
                     <h2 class="section__heading--maintitle">Get In Touch With Us</h2>
                 </div>
                 <div class="main__contact--area position__relative">
-                    
+
                     <div class="contact__form">
                         <h3 class="contact__form--title mb-40">Contact Us</h3>
-                        <form class="contact__form--inner" href="mailto:healthylivingkenya254@gmail.com"  action="#">
+                        <form class="contact__form--inner" href="mailto:coloradogreengardens@gmail.com"  action="#">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
@@ -568,7 +527,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="contact__form--btn primary__btn" type="submit" >Submit Now</button>  
+                            <button class="contact__form--btn primary__btn" type="submit" >Submit Now</button>
                         </form>
                     </div>
 
@@ -583,7 +542,7 @@
                                     </svg>
                                 </div>
                                 <div class="contact__info--content">
-                                    <p class="contact__info--content__desc text-white">Change the design through a range <br> <a href="tel:+25495625641">+25495625641</a></p>
+                                    <p class="contact__info--content__desc text-white">Change the design through a range <br> <a href="tel:+010101010">+010101010</a></p>
                                 </div>
                             </div>
                         </div>
@@ -593,10 +552,10 @@
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.57" height="31.13" viewBox="0 0 31.57 31.13">
                                         <path id="ic_email_24px" d="M30.413,4H5.157C3.421,4,2.016,5.751,2.016,7.891L2,31.239c0,2.14,1.421,3.891,3.157,3.891H30.413c1.736,0,3.157-1.751,3.157-3.891V7.891C33.57,5.751,32.149,4,30.413,4Zm0,7.783L17.785,21.511,5.157,11.783V7.891l12.628,9.728L30.413,7.891Z" transform="translate(-2 -4)" fill="currentColor"/>
-                                    </svg>  
+                                    </svg>
                                 </div>
                                 <div class="contact__info--content">
-                                    <p class="contact__info--content__desc text-white"> <a href="mailto:healthylivingkenya254@gmail.com">healthylivingkenya254@gmail.com</a></p> 
+                                    <p class="contact__info--content__desc text-white"> <a href="mailto:coloradogreengardens@gmail.com">coloradogreengardens@gmail.com</a></p>
                                 </div>
                             </div>
                         </div>
@@ -606,10 +565,10 @@
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.57" height="31.13" viewBox="0 0 31.57 31.13">
                                         <path id="ic_account_balance_24px" d="M5.323,14.341V24.718h4.985V14.341Zm9.969,0V24.718h4.985V14.341ZM2,32.13H33.57V27.683H2ZM25.262,14.341V24.718h4.985V14.341ZM17.785,1,2,8.412v2.965H33.57V8.412Z" transform="translate(-2 -1)" fill="currentColor"/>
-                                    </svg> 
+                                    </svg>
                                 </div>
                                 <div class="contact__info--content">
-                                    <p class="contact__info--content__desc text-white">  Biashara Street at Nairobi CBD, Mbagathi<br> NAIROBI</h3>.</p> 
+                                    <p class="contact__info--content__desc text-white">  Colorado<br> USA</h3>.</p>
                                 </div>
                             </div>
                         </div>
@@ -618,7 +577,7 @@
         </section>
         <!-- End contact section -->
 
-         
+
           <!-- Start shipping section -->
           <section class="shipping__section shipping__style3 section--padding">
             <div class="container-fluid">
@@ -788,7 +747,7 @@
                         </button>
                     </h2>
                     <div class="footer__widget--inner">
-                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in <strong>Biashara Street at Nairobi CBD, Mbagathi, Nairobi Area, Kenya 254</strong>. <br> Feel free to make your order
+                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in Colorado. <br> Feel free to make your order
                             and<br> we will deliver to your doorstep.</p>
                         <div class="footer__social">
                             <h3 class="social__title text-ofwhite h4 mb-15">Follow Us</h3>
@@ -918,7 +877,7 @@
             <div class="footer__bottom d-flex justify-content-between align-items-center">
                 <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link"
                         href="/">Colorado Green Garden</a> . All Rights Reserved.</p>
-                
+
             </div>
         </div>
     </footer>
@@ -937,7 +896,7 @@
 <!-- Customscript js -->
 <script src="{% static 'assets/js/script.js' %}"></script>
 
-  
+
 </body>
 
 </html>

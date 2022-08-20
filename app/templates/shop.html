@@ -272,7 +272,6 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -439,7 +438,6 @@
                             <span class="current__price">$ {{cart_item.product.new_price}} -</span>
                             <span class="old__price">$ {{cart_item.product.new_price}}</span>
                         </div>
-
                         <div class="minicart__text--footer d-flex align-items-center">
                             <div class="quantity__box minicart__quantity">
                                 <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -502,7 +500,6 @@
     <!-- End header area -->
 
     <main class="main__content_wrapper">
-
         <!-- Start breadcrumb section -->
         <section class="breadcrumb__section" style="background-color: #82b440;">
             <div class="container">
@@ -564,7 +561,6 @@
                                 </button>
                             </div>
                         </div>
-
                     </div>
                     <div class="product__view--mode__list product__view--search d-none d-lg-block">
                         <form class="product__view--search__form" action="{% url 'search' %}" method="GET">
@@ -675,7 +671,6 @@
                                             </a>
                                         <li>
                                         {% endif %}
-
                                         {% for i in products.paginator.page_range %}
                                             {% if products.number == i %}
                                                 <li class="pagination__list"><a href="#"><span class="pagination__item pagination__item--current">{{i}}</span></a></li>
@@ -1010,7 +1005,6 @@
             <div class="footer__bottom d-flex justify-content-between align-items-center">
                 <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link"
                         href="/">Colorado Green Garden</a> . All Rights Reserved.</p>
-
             </div>
         </div>
     </footer>

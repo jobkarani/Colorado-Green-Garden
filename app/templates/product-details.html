@@ -170,7 +170,6 @@
                                     </a>
 
                                 </li>
-
                                 <li class="header__menu--items style2">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -277,7 +276,6 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -444,7 +442,6 @@
                         <span class="current__price">$ {{cart_item.product.new_price}} -</span>
                         <span class="old__price">$ {{cart_item.product.new_price}}</span>
                     </div>
-
                     <div class="minicart__text--footer d-flex align-items-center">
                         <div class="quantity__box minicart__quantity">
                             <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -507,7 +504,6 @@
     <!-- End header area -->
 
     <main class="main__content_wrapper">
-
         <!-- Start breadcrumb section -->
         <section class="breadcrumb__section" style="background-color: #82b440;padding-top: 2%;padding-bottom: 2%;">
             <div class="container">
@@ -530,7 +526,6 @@
         <section class="product__details--section section--padding">
             <div class="container">
                 <div class="row row-cols-lg-2 row-cols-md-2">
-
                     <div class="col">
                         <div class="product__details--media">
                             <div class="product__media--preview  swiper">
@@ -569,7 +564,6 @@
                             </div>
                          <div class="product__media--nav swiper">
                                 <div class="swiper-wrapper">
-
                                     <div class="swiper-slide">
                                         <div class="product__media--nav__items">
                                             <img class="product__media--nav__items--img" src="{{ single_product.image1.url }}" alt="product-nav-img">
@@ -650,7 +644,6 @@
                                 <p class="product__details--info__desc mb-15">{{ single_product.description }}</p>
                                 <div class="product__variant">
                                     <div class="product__variant--list quantity d-flex align-items-center mb-20">
-
                                         {% if single_product.stock <= 0 %}
                                         <h5 class="text-danger">Out of Stock</h5>
                                         {% else %}
@@ -663,7 +656,6 @@
                                         <a href="{% url 'add_cart' single_product.id %}"   class="btn quickview__cart--btn btn primary__btn"> <span class="text">Add to Cart</span> <i
                                             class="fa fa-shopping-cart"></i> </a>
                                     </div>
-
                                     {% endif %}
                                     {% endif %}
                                 </div>
@@ -754,7 +746,6 @@
                                                 </div>
                                             </div>
                                             {% endfor %}
-
                                         <div id="writereview" class="reviews__comment--reply__area">
                                             <form action="{% url 'submit_review' single_product.id %}" method="POST">
                                                  {% csrf_token%}
@@ -830,7 +821,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     {% endfor %}
                 </div>
@@ -840,7 +830,6 @@
         </div>
     </section>
     <!-- End product section -->
-
    <!-- Start shipping section -->
    <section class="shipping__section shipping__style3 section--padding">
     <div class="container-fluid">
@@ -1139,7 +1128,6 @@
             <div class="footer__bottom d-flex justify-content-between align-items-center">
                 <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link"
                         href="/">Colorado Green Garden</a> . All Rights Reserved.</p>
-
             </div>
         </div>
     </footer>
@@ -1162,7 +1150,6 @@
 
 <!-- Customscript js -->
 <script src="{% static 'assets/js/script.js' %}"></script>
-
 </body>
 
 </html>

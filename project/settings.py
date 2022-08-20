@@ -108,7 +108,6 @@ if config('MODE')=="dev":
            'HOST': config('DB_HOST'),
            'PORT': '',
        }
-
    }
 # production
 else:

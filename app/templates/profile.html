@@ -240,7 +240,6 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -403,7 +402,6 @@
                             <span class="current__price">$ {{cart_item.product.new_price}} -</span>
                             <span class="old__price">$ {{cart_item.product.new_price}}</span>
                         </div>
-
                         <div class="minicart__text--footer d-flex align-items-center">
                             <div class="quantity__box minicart__quantity">
                                 <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -519,7 +517,6 @@
                                     {% endif %}
                                     <h4 class="shipping__items2--content__title">Username:  <span class="team__content--subtitle">{{ user.username }}</span></h4>
                                     <h4 class="shipping__items2--content__title ">Email:  <span class="team__content--subtitle">{{ user.email }}</span></h4>
-
                                     {% if profile.phone %}
                                     <h5 class="shipping__items2--content__title">Contact: <span class="team__content--subtitle">{{ profile.phone }}</span></h5>
                                     {% else %}
@@ -841,7 +838,11 @@
             <div class="footer__bottom d-flex justify-content-between align-items-center">
                 <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link"
                         href="/">Colorado Green Garden</a> . All Rights Reserved.</p>
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 0aeca47e39519b7b54d3f99f91ef9145da78a240
             </div>
         </div>
     </footer>
