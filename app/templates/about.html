@@ -52,11 +52,11 @@
                     </span>
 
                     <span data-text-preloader="O" class="letters-loading">
-                        O
+                        O 
                     </span>
 
                     <span data-text-preloader="M" class="letters-loading">
-                        M
+                        M 
                     </span>
 
                     <span data-text-preloader="E" class="letters-loading">
@@ -208,7 +208,7 @@
                                     </a>
 
                                 </li>
-
+                                
                                 <li class="header__menu--items style2">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -294,7 +294,7 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-
+                                
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -452,16 +452,16 @@
                     </div>
                     <div class="minicart__text">
                         <h3 class="minicart__subtitle h4"><a href="{{ cart_item.product.get_url }}">{{cart_item.product.name}}</a></h3>
-                        {% if cart_item.variations.all %}
+                        {% if cart_item.variations.all %} 
                         {% for item in cart_item.variations.all %}
                         <span class="color__variant"><b>{{ item.variation_category }} : </b> {{ item.variation_value }}</span>
-                        {% endfor %}
+                        {% endfor %} 
                         {% endif %}
                         <div class="minicart__price">
                             <span class="current__price">Ksh {{cart_item.product.new_price}} -</span>
                             <span class="old__price">Ksh {{cart_item.product.new_price}}</span>
                         </div>
-
+                      
                         <div class="minicart__text--footer d-flex align-items-center">
                             <div class="quantity__box minicart__quantity">
                                 <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -470,7 +470,7 @@
                                     <input type="number" class="quantity__number" value="{{ cart_item.quantity }}" data-counter />
                                 </label>
                                 <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
-                                    {% csrf_token %}
+                                    {% csrf_token %} 
                                     {% for item in cart_item.variations.all %}
                                     <input type="hidden" name="{{ item.variation_category |lower }}" value="{{ item.variation_value | capfirst }}">
                                     {% endfor %}
@@ -483,9 +483,9 @@
                 </div>
                 {% endfor %}
             </div>
-
+            
             {% endif %}
-
+            
             <div class="minicart__button d-flex justify-content-center">
                 <a class="primary__btn minicart__button--link" href="{% url 'cart' %}">View cart</a>
                 <a class="primary__btn minicart__button--link" href="{% url 'checkout' %}">Checkout</a>
@@ -553,7 +553,7 @@
               </div>
               <div class="about__thumb--items position__relative">
                 <img class="about__thumb--img border-radius-5 display-block"
-                  src="https://images.unsplash.com/photo-1642223946272-24a58db964f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTE4fHxtYXJpanVhbmF8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="about-thumb" />
+                  src="https://images.unsplash.com/photo-1642223946272-24a58db964f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTE4fHxtYXJpanVhbmF8ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="about-thumb" /> 
                 <div class="banner__bideo--play about__thumb--play">
                   <a class="banner__bideo--play__icon about__thumb--play__icon glightbox"
                     href="https://www.youtube.com/watch?v=qhC4aw1FFh8" data-gallery="video">
@@ -600,7 +600,7 @@
                 Colorado Green Garden
               </h2>
               <p class="about__content--desc ">
-                Welcome to <strong>Colorado Green Garden</strong>, your number one source for all <strong>healthy products</strong>. We're dedicated to giving you the very best of <strong>Healthy Products</strong>, with a focus on dependability, customer service and uniqueness.
+                Welcome to <strong>Colorado Green Garden</strong>, your number one source for all <strong>healthy products</strong>. We're dedicated to giving you the very best of <strong>Healthy Products</strong>, with a focus on dependability, customer service and uniqueness. 
               </p>
               <p class="about__content--desc mb-25">We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.</p>
             </div>
@@ -610,7 +610,7 @@
     </section>
     <!-- End about section -->
 
-
+    
 
     <!-- Start counterup banner section -->
     <div class="counterup__banner--section counterup__banner__bg2" id="funfactId">
@@ -645,7 +645,7 @@
     </div>
     <!-- End counterup banner section -->
 
-
+    
      <!-- Start shipping section -->
      <section class="shipping__section shipping__style3 section--padding">
         <div class="container-fluid">
@@ -798,7 +798,7 @@
         </div>
     </section>
     <!-- End shipping section -->
-
+    
   </main>
 
     <!-- Start footer section -->
@@ -932,10 +932,10 @@
                     <div class="footer__widget--inner">
                         <p class="footer__widget--desc text-ofwhite m-0">Fill in to sign up to our newsletter.</p>
                         <div class="newsletter__subscribe">
-                            <form class="newsletter__subscribe--form" action="{% url 'subscribeToNewsLetter' %}">
+                            <form class="newsletter__subscribe--form" action="#">
                                 <label>
-                                    <input class="newsletter__subscribe--input" name="emailSubscribe"
-                                        placeholder="Email Address" type="email">
+                                    <input class="newsletter__subscribe--input" placeholder="Email Address"
+                                        type="email">
                                 </label>
                                 <button class="newsletter__subscribe--button" type="submit">Subscribe</button>
                             </form>
@@ -957,10 +957,10 @@
      <!-- All Script JS Plugins here  -->
      <!-- <script src="assets/js/vendor/popper.js" defer="defer"></script> -->
      <!-- <script src="assets/js/vendor/bootstrap.min.js" defer="defer"></script> -->
-
+     
      <script src="{% static 'assets/js/plugins/swiper-bundle.min.js' %}"></script>
      <script src="{% static 'assets/js/plugins/glightbox.min.js' %}"></script>
-
+     
      <!-- Customscript js -->
      <script src="{% static 'assets/js/script.js' %}"></script>
 </body>

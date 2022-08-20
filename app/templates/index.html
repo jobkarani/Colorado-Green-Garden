@@ -29,54 +29,14 @@
 
 <body>
 
-    <!-- Start preloader -->
-    <div id="preloader">
-        <div id="ctn-preloader" class="ctn-preloader">
-            <div class="animation-preloader">
-                <div class="spinner"></div>
-                <div class="txt-loading">
-                    <span data-text-preloader="W" class="letters-loading">
-                        W
-                    </span>
 
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-
-                    <span data-text-preloader="L" class="letters-loading">
-                        L
-                    </span>
-
-                    <span data-text-preloader="C" class="letters-loading">
-                        C
-                    </span>
-
-                    <span data-text-preloader="O" class="letters-loading">
-                        O 
-                    </span>
-
-                    <span data-text-preloader="M" class="letters-loading">
-                        M 
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-                </div>
-            </div>
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
-        </div>
-    </div>
-    <!-- End preloader -->
-    
     <!-- Start header area -->
     <header class="header__section">
         <div class="header__topbar bg__secondary head">
             <div class="container-fluid">
                 <div class="header__topbar--inner d-flex align-items-center justify-content-between">
                     <div class="header__shipping">
-                        <ul class="header__shipping--wrapper d-flex"> 
+                        <ul class="header__shipping--wrapper d-flex">
                             <li class="header__shipping--text text-white">Welcome to <strong>Colorado Green Garden</strong> online Store</li>
                         </ul>
                     </div>
@@ -86,7 +46,7 @@
                             <li class="header__shipping--text text-white d-sm-2-none"><img
                                     class="header__shipping--text__icon" src="{% static 'assets/img/icon/email.png' %}"
                                     alt="email-icon"> <a class="header__shipping--text__link"
-                                    href="mailto:healthylivingkenya254@gmail.com">healthylivingkenya254@gmail.com</a></li>
+                                    href="mailto:coloradogreengardens@gmail.com">coloradogreengardens@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -171,7 +131,7 @@
                                     <span class="items__count">{{  cart_count }}</span>
                                 </a>
                             </li>
-                          
+
                             {% if user.is_authenticated  %}
                             <li class="header__account--items ">
                                 <a class="header__account--btn" href="{%url 'logout' %}">
@@ -209,7 +169,7 @@
                                     </a>
 
                                 </li>
-                                
+
                                 <li class="header__menu--items style2">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -316,7 +276,7 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-                                
+
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -474,16 +434,12 @@
                 </div>
                 <div class="minicart__text">
                     <h3 class="minicart__subtitle h4"><a href="{{ cart_item.product.get_url }}">{{cart_item.product.name}}</a></h3>
-                    {% if cart_item.variations.all %} 
-                    {% for item in cart_item.variations.all %}
-                    <span class="color__variant"><b>{{ item.variation_category }} : </b> {{ item.variation_value }}</span>
-                    {% endfor %} 
-                    {% endif %}
+
                     <div class="minicart__price">
-                        <span class="current__price">Ksh {{cart_item.product.new_price}} -</span>
-                        <span class="old__price">Ksh {{cart_item.product.new_price}}</span>
+                        <span class="current__price">$ {{cart_item.product.new_price}} -</span>
+                        <span class="old__price">$ {{cart_item.product.new_price}}</span>
                     </div>
-                  
+
                     <div class="minicart__text--footer d-flex align-items-center">
                         <div class="quantity__box minicart__quantity">
                             <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -492,10 +448,6 @@
                                 <input type="number" class="quantity__number" value="{{ cart_item.quantity }}" data-counter />
                             </label>
                             <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
-                                {% csrf_token %} 
-                                {% for item in cart_item.variations.all %}
-                                <input type="hidden" name="{{ item.variation_category |lower }}" value="{{ item.variation_value | capfirst }}">
-                                {% endfor %}
                                 <button type="submit" class="quantity__value" aria-label="quantity value" value="Increase Value">+</button>
                             </form>
                         </div>
@@ -505,9 +457,9 @@
             </div>
             {% endfor %}
         </div>
-        
+
         {% endif %}
-        
+
         <div class="minicart__button d-flex justify-content-center">
             <a class="primary__btn minicart__button--link" href="{% url 'cart' %}">View cart</a>
             <a class="primary__btn minicart__button--link" href="{% url 'checkout' %}">Checkout</a>
@@ -560,12 +512,11 @@
                                                 <p class="slider__content--desc desc1 mb-15"><img
                                                         class="slider__text--shape__icon"
                                                         src="{% static 'assets/img/icon/text-shape-icon.png' %}" alt="text-shape-icon">
-                                                     New healthy Drinks</p>
-                                                <h2 class="slider__content--maintitle h1">Do you need <br> a new diet plan <br>
-                                                    for your family? </h2>
-                                                <p class="slider__content--desc desc2 d-sm-2-none mb-40">Up To 40% Off
-                                                    Final Sale Items. <br>
-                                                    Caught in the Moment!</p>
+                                                     New Medicinal Drinks</p>
+                                                <h2 class="slider__content--maintitle h1">Medical <br> Marijuana <br>
+                                                    Products Store </h2>
+                                                <p class="slider__content--desc desc2 d-sm-2-none mb-40">We use high quality and certified <br>
+                                                    product from the USA</p>
                                                 <a class="slider__btn primary__btn" href="{% url 'shop' %}">Show Products
                                                     <svg class="primary__btn--arrow__icon"
                                                         xmlns="http://www.w3.org/2000/svg" width="20.2" height="12.2"
@@ -588,16 +539,15 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="hero__slider--items__inner">
-                                            <div class="slider__content">
+                                            <div class="slider__content ayub__left">
                                                 <p class="slider__content--desc desc1 mb-15"><img
                                                         class="slider__text--shape__icon"
                                                         src="{% static 'assets/img/icon/text-shape-icon.png' %}" alt="text-shape-icon">
-                                                        New Supplements </p>
-                                                <h2 class="slider__content--maintitle h1">Live a <br>
-                                                    healthy life !!!</h2>
-                                                <p class="slider__content--desc desc2 d-sm-2-none mb-40 ">Up To 40% Off
-                                                    Final Sale Items. <br>
-                                                    Caught in the Moment!</p>
+                                                        New Vapes </p>
+                                                <h2 class="slider__content--maintitle h1">Express <br>
+                                                    Delivery Service</h2>
+                                                <p class="slider__content--desc desc2 d-sm-2-none mb-40">Its ideal for drinking, cooking, smoking and other ways. <br>
+                                                    The products are popular in 42 countries.</p>
                                                 <a class="primary__btn slider__btn" href="{% url 'shop' %}">Show Products
                                                     <svg class="slider__btn--arrow__icon"
                                                         xmlns="http://www.w3.org/2000/svg" width="20.2" height="12.2"
@@ -624,12 +574,11 @@
                                                 <p class="slider__content--desc desc1 mb-15"><img
                                                         class="slider__text--shape__icon"
                                                         src="{% static 'assets/img/icon/text-shape-icon.png' %}" alt="text-shape-icon">
-                                                        New healthy products </p>
-                                                <h2 class="slider__content--maintitle h1">Need to cut off <br>
-                                                    some weight?</h2>
-                                                <p class="slider__content--desc desc2 d-sm-2-none mb-40">Up To 40% Off
-                                                    Final Sale Items. <br>
-                                                    Caught in the Moment!</p>
+                                                        New Medicinal products </p>
+                                                <h2 class="slider__content--maintitle h1">Well Feelings<br>
+                                                    Coffee Shop</h2>
+                                                <p class="slider__content--desc desc2 d-sm-2-none mb-40">Visit our cannabis shop and fill your cart with top-grade marijuana flowers, concentrates, edibles, vapes, CBD, shrooms, and more!  <br>
+                                                    Enjoy the highest-quality buds and top brand-name products at affordable prices.</p>
                                                 <a class="primary__btn slider__btn" href="{% url 'shop' %}">Show products
                                                     <svg class="slider__btn--arrow__icon"
                                                         xmlns="http://www.w3.org/2000/svg" width="20.2" height="12.2"
@@ -839,9 +788,9 @@
                                         <span class="product__items--content__subtitle">{{ prod.category }}</span>
                                         <h4 class="product__items--content__title"><a href="{{ prod.get_url }}">{{ prod.name }}</a></h4>
                                         <div class="product__items--price">
-                                            <span class="current__price">Ksh {{ prod.new_price }}</span>
+                                            <span class="current__price">$ {{ prod.new_price }}</span>
                                             <span class="price__divided"></span>
-                                            <span class="old__price">Ksh {{ prod.old_price }}</span>
+                                            <span class="old__price">$ {{ prod.old_price }}</span>
                                         </div>
 
                                     </div>
@@ -852,7 +801,7 @@
                         </div>
                     </div>
                 </div>
-                
+
 
             </div>
 
@@ -917,7 +866,7 @@
                         </button>
                     </h2>
                     <div class="footer__widget--inner">
-                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in <strong>Biashara Street at Nairobi CBD, Mbagathi, Nairobi Area, Kenya 254</strong>. <br> Feel free to make your order
+                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in Colorado. <br> Feel free to make your order
                             and<br> we will deliver to your doorstep.</p>
                         <div class="footer__social">
                             <h3 class="social__title text-ofwhite h4 mb-15">Follow Us</h3>
@@ -1047,7 +996,7 @@
             <div class="footer__bottom d-flex justify-content-between align-items-center">
                 <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link"
                         href="/">Colorado Green Garden</a> . All Rights Reserved.</p>
-                
+
             </div>
         </div>
     </footer>
@@ -1066,7 +1015,7 @@
                 <div class="newsletter__popup--thumbnail">
 
                     <img class="newsletter__popup--thumbnail__img display-block"
-                        src=" https://cdn.pixabay.com/photo/2017/09/16/19/21/salad-2756467__340.jpg"
+                        src=" hhttps://images.unsplash.com/photo-1617101814812-3529cf87b5ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fG1hcmlqdWFuYXxlbnwwfDB8MHx8&auto=format&fit=crop&w=500&q=60"
                         alt="newsletter-popup-thumb">
                 </div>
                 <div class="newsletter__popup--box__right">

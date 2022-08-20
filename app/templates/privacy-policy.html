@@ -30,48 +30,6 @@
 
 </head>
 <body>
-
-     <!-- Start preloader -->
-    <div id="preloader">
-        <div id="ctn-preloader" class="ctn-preloader">
-            <div class="animation-preloader">
-                <div class="spinner"></div>
-                <div class="txt-loading">
-                    <span data-text-preloader="W" class="letters-loading">
-                        W
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-
-                    <span data-text-preloader="L" class="letters-loading">
-                        L
-                    </span>
-
-                    <span data-text-preloader="C" class="letters-loading">
-                        C
-                    </span>
-
-                    <span data-text-preloader="O" class="letters-loading">
-                        O 
-                    </span>
-
-                    <span data-text-preloader="M" class="letters-loading">
-                        M 
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-                </div>
-            </div>
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
-        </div>
-    </div>
-    <!-- End preloader -->
-
     <!-- Start header area -->
     <header class="header__section">
         <div class="header__topbar bg__secondary head">
@@ -88,7 +46,7 @@
                             <li class="header__shipping--text text-white d-sm-2-none"><img
                                     class="header__shipping--text__icon" src="{% static 'assets/img/icon/email.png' %}"
                                     alt="email-icon"> <a class="header__shipping--text__link"
-                                    href="mailto:healthylivingkenya254@gmail.com">healthylivingkenya254@gmail.com</a></li>
+                                    href="mailto:coloradogreengardens@gmail.com">coloradogreengardens@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -210,7 +168,7 @@
                                     </a>
 
                                 </li>
-                                
+
                                 <li class="header__menu--items style2">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -296,7 +254,7 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-                                
+
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -453,16 +411,11 @@
                     </div>
                     <div class="minicart__text">
                         <h3 class="minicart__subtitle h4"><a href="{{ cart_item.product.get_url }}">{{cart_item.product.name}}</a></h3>
-                        {% if cart_item.variations.all %} 
-                        {% for item in cart_item.variations.all %}
-                        <span class="color__variant"><b>{{ item.variation_category }} : </b> {{ item.variation_value }}</span>
-                        {% endfor %} 
-                        {% endif %}
                         <div class="minicart__price">
-                            <span class="current__price">Ksh {{cart_item.product.new_price}} -</span>
-                            <span class="old__price">Ksh {{cart_item.product.new_price}}</span>
+                            <span class="current__price">$ {{cart_item.product.new_price}} -</span>
+                            <span class="old__price">$ {{cart_item.product.new_price}}</span>
                         </div>
-                      
+
                         <div class="minicart__text--footer d-flex align-items-center">
                             <div class="quantity__box minicart__quantity">
                                 <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -471,7 +424,7 @@
                                     <input type="number" class="quantity__number" value="{{ cart_item.quantity }}" data-counter />
                                 </label>
                                 <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
-                                    {% csrf_token %} 
+                                    {% csrf_token %}
                                     {% for item in cart_item.variations.all %}
                                     <input type="hidden" name="{{ item.variation_category |lower }}" value="{{ item.variation_value | capfirst }}">
                                     {% endfor %}
@@ -484,9 +437,9 @@
                 </div>
                 {% endfor %}
             </div>
-            
+
             {% endif %}
-          
+
             <div class="minicart__button d-flex justify-content-center">
                 <a class="primary__btn minicart__button--link" href="{% url 'cart' %}">View cart</a>
                 <a class="primary__btn minicart__button--link" href="{% url 'checkout' %}">Checkout</a>
@@ -550,9 +503,9 @@
                     <div class="col-12">
                         <div class="privacy__policy--content">
                             <h2 class="privacy__policy--content__title">Who we are</h2>
-                            <p class="privacy__policy--content__desc">Our website address is: <a href="mailto:healthylivingkenya254@gmail.com">healthylivingkenya254@gmail.com</a></p>
+                            <p class="privacy__policy--content__desc">Our website address is: <a href="mailto:coloradogreengardens@gmail.com">coloradogreengardens@gmail.com</a></p>
                         </div>
-                    
+
                         <div class="privacy__policy--content section_2">
                             <h2 class="privacy__policy--content__title">What personal data we collect and why we collect it</h2>
                             <h3 class="privacy__policy--content__subtitle">Comments</h3>
@@ -758,7 +711,7 @@
                         </button>
                     </h2>
                     <div class="footer__widget--inner">
-                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in <strong>Biashara Street at Nairobi CBD, Mbagathi, Nairobi Area, Kenya 254</strong>. <br> Feel free to make your order
+                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in Colorado. <br> Feel free to make your order
                             and<br> we will deliver to your doorstep.</p>
                         <div class="footer__social">
                             <h3 class="social__title text-ofwhite h4 mb-15">Follow Us</h3>
@@ -888,7 +841,7 @@
             <div class="footer__bottom d-flex justify-content-between align-items-center">
                 <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link"
                         href="/">Colorado Green Garden</a> . All Rights Reserved.</p>
-                
+
             </div>
         </div>
     </footer>
@@ -911,7 +864,7 @@
 <!-- Customscript js -->
 <script src="{% static 'assets/js/script.js' %}"></script>
 
-  
+
 </body>
 
 </html>

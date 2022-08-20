@@ -29,47 +29,6 @@
 
 <body>
 
-     <!-- Start preloader -->
-     <div id="preloader">
-        <div id="ctn-preloader" class="ctn-preloader">
-            <div class="animation-preloader">
-                <div class="spinner"></div>
-                <div class="txt-loading">
-                    <span data-text-preloader="W" class="letters-loading">
-                        W
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-
-                    <span data-text-preloader="L" class="letters-loading">
-                        L
-                    </span>
-
-                    <span data-text-preloader="C" class="letters-loading">
-                        C
-                    </span>
-
-                    <span data-text-preloader="O" class="letters-loading">
-                        O 
-                    </span>
-
-                    <span data-text-preloader="M" class="letters-loading">
-                        M 
-                    </span>
-
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-                </div>
-            </div>
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
-        </div>
-    </div>
-    <!-- End preloader -->
-
         <!-- Start offcanvas filter sidebar -->
         <div class="offcanvas__filter--sidebar widget__area">
             <button type="button" class="offcanvas__filter--close" data-offcanvas>
@@ -105,7 +64,7 @@
                             <li class="header__shipping--text text-white d-sm-2-none"><img
                                     class="header__shipping--text__icon" src="{% static 'assets/img/icon/email.png' %}"
                                     alt="email-icon"> <a class="header__shipping--text__link"
-                                    href="mailto:healthylivingkenya254@gmail.com">healthylivingkenya254@gmail.com</a></li>
+                                    href="mailto:coloradogreengardens@gmail.com">coloradogreengardens@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -227,7 +186,7 @@
                                     </a>
 
                                 </li>
-                                
+
                                 <li class="header__menu--items style2">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -313,7 +272,7 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-                                
+
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -471,16 +430,16 @@
                     </div>
                     <div class="minicart__text">
                         <h3 class="minicart__subtitle h4"><a href="{{ cart_item.product.get_url }}">{{cart_item.product.name}}</a></h3>
-                        {% if cart_item.variations.all %} 
+                        {% if cart_item.variations.all %}
                         {% for item in cart_item.variations.all %}
                         <span class="color__variant"><b>{{ item.variation_category }} : </b> {{ item.variation_value }}</span>
-                        {% endfor %} 
+                        {% endfor %}
                         {% endif %}
                         <div class="minicart__price">
-                            <span class="current__price">Ksh {{cart_item.product.new_price}} -</span>
-                            <span class="old__price">Ksh {{cart_item.product.new_price}}</span>
+                            <span class="current__price">$ {{cart_item.product.new_price}} -</span>
+                            <span class="old__price">$ {{cart_item.product.new_price}}</span>
                         </div>
-                      
+
                         <div class="minicart__text--footer d-flex align-items-center">
                             <div class="quantity__box minicart__quantity">
                                 <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -489,7 +448,7 @@
                                     <input type="number" class="quantity__number" value="{{ cart_item.quantity }}" data-counter />
                                 </label>
                                 <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
-                                    {% csrf_token %} 
+                                    {% csrf_token %}
                                     {% for item in cart_item.variations.all %}
                                     <input type="hidden" name="{{ item.variation_category |lower }}" value="{{ item.variation_value | capfirst }}">
                                     {% endfor %}
@@ -502,9 +461,9 @@
                 </div>
                 {% endfor %}
             </div>
-            
+
             {% endif %}
-            
+
             <div class="minicart__button d-flex justify-content-center">
                 <a class="primary__btn minicart__button--link" href="{% url 'cart' %}">View cart</a>
                 <a class="primary__btn minicart__button--link" href="{% url 'checkout' %}">Checkout</a>
@@ -543,7 +502,7 @@
     <!-- End header area -->
 
     <main class="main__content_wrapper">
-       
+
         <!-- Start breadcrumb section -->
         <section class="breadcrumb__section" style="background-color: #82b440;">
             <div class="container">
@@ -567,7 +526,7 @@
             <div class="container-fluid">
                 <div class="shop__header bg__gray--color d-flex align-items-center justify-content-between mb-30">
                     <button class="widget__filter--btn d-none d-md-2-flex align-items-center" data-offcanvas>
-                        <svg  class="widget__filter--btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28" d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"/><circle cx="336" cy="128" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/><circle cx="176" cy="256" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/><circle cx="336" cy="384" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/></svg> 
+                        <svg  class="widget__filter--btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28" d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80"/><circle cx="336" cy="128" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/><circle cx="176" cy="256" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/><circle cx="336" cy="384" r="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/></svg>
                         <span class="widget__filter--btn__text">Filter</span>
                     </button>
                     <div class="product__view--mode d-flex align-items-center">
@@ -605,7 +564,7 @@
                                 </button>
                             </div>
                         </div>
-                       
+
                     </div>
                     <div class="product__view--mode__list product__view--search d-none d-lg-block">
                         <form class="product__view--search__form" action="{% url 'search' %}" method="GET">
@@ -613,7 +572,7 @@
                                 <input class="product__view--search__input border-0" placeholder="Search by" type="text" name="keyword">
                             </label>
                             <button class="product__view--search__btn" aria-label="shop button"  type="submit">
-                                <svg class="product__view--search__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>  
+                                <svg class="product__view--search__btn--svg" xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>
                             </button>
                         </form>
                     </div>
@@ -654,9 +613,9 @@
                                                         <span class="product__items--content__subtitle">{{ product.category }}</span>
                                                         <h3 class="product__items--content__title h4"><a class="prod-details" href="{{ product.get_url }}">{{ product.name }}</a></h3>
                                                         <div class="product__items--price">
-                                                            <span class="current__price">Ksh {{ product.new_price }}</span>
+                                                            <span class="current__price">$ {{ product.new_price }}</span>
                                                             <span class="price__divided"></span>
-                                                            <span class="old__price">Ksh {{ product.old_price }}</span>
+                                                            <span class="old__price">$ {{ product.old_price }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -684,9 +643,9 @@
                                                         <span class="product__items--content__subtitle mb-5">{{ product.category }}</span>
                                                         <h3 class="product__list--items__content--title h4 mb-10"><a href="{{ product.get_url }}">{{ product.name }}</a></h3>
                                                         <div class="product__list--items__price mb-10">
-                                                            <span class="current__price">Ksh {{ product.new_price }}</span>
+                                                            <span class="current__price">$ {{ product.new_price }}</span>
                                                             <span class="price__divided"></span>
-                                                            <span class="old__price">Ksh {{ product.old_price }}</span>
+                                                            <span class="old__price">$ {{ product.old_price }}</span>
                                                         </div>
                                                         <p class="product__list--items__content--desc d-xl-none mb-15">{{ product.description }}</p>
                                                     </div>
@@ -716,7 +675,7 @@
                                             </a>
                                         <li>
                                         {% endif %}
-                                        
+
                                         {% for i in products.paginator.page_range %}
                                             {% if products.number == i %}
                                                 <li class="pagination__list"><a href="#"><span class="pagination__item pagination__item--current">{{i}}</span></a></li>
@@ -921,7 +880,7 @@
                         </button>
                     </h2>
                     <div class="footer__widget--inner">
-                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in <strong>Biashara Street at Nairobi CBD, Mbagathi, Nairobi Area, Kenya 254</strong>. <br> Feel free to make your order
+                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in Colorado. <br> Feel free to make your order
                             and<br> we will deliver to your doorstep.</p>
                         <div class="footer__social">
                             <h3 class="social__title text-ofwhite h4 mb-15">Follow Us</h3>
@@ -1051,7 +1010,7 @@
             <div class="footer__bottom d-flex justify-content-between align-items-center">
                 <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link"
                         href="/">Colorado Green Garden</a> . All Rights Reserved.</p>
-                
+
             </div>
         </div>
     </footer>
@@ -1066,10 +1025,10 @@
 
     <script src="{% static 'assets/js/plugins/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'assets/js/plugins/glightbox.min.js' %}"></script>
- 
+
     <!-- Customscript js -->
     <script src="{% static 'assets/js/script.js' %}"></script>
- 
+
 </body>
 
 </html>

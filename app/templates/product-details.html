@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://cdn.pixabay.com/photo/2021/07/18/19/43/cannabis-6476495__340.png">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Shalimar&display=swap"
-    rel="stylesheet">                   
+    rel="stylesheet">
 
     <!-- ======= All CSS Plugins here ======== -->
      <link rel="stylesheet" href="{% static 'assets/css/plugins/swiper-bundle.min.css' %}">
@@ -32,48 +32,6 @@
 
 <body>
 
-  <!-- Start preloader -->
-  <div id="preloader">
-    <div id="ctn-preloader" class="ctn-preloader">
-        <div class="animation-preloader">
-            <div class="spinner"></div>
-            <div class="txt-loading">
-                <span data-text-preloader="W" class="letters-loading">
-                    W
-                </span>
-
-                <span data-text-preloader="E" class="letters-loading">
-                    E
-                </span>
-
-                <span data-text-preloader="L" class="letters-loading">
-                    L
-                </span>
-
-                <span data-text-preloader="C" class="letters-loading">
-                    C
-                </span>
-
-                <span data-text-preloader="O" class="letters-loading">
-                    O 
-                </span>
-
-                <span data-text-preloader="M" class="letters-loading">
-                    M 
-                </span>
-
-                <span data-text-preloader="E" class="letters-loading">
-                    E
-                </span>
-            </div>
-        </div>
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-    </div>
-</div>
-<!-- End preloader -->
-
-
     <!-- Start header area -->
     <header class="header__section">
         <div class="header__topbar bg__secondary head">
@@ -90,7 +48,7 @@
                             <li class="header__shipping--text text-white d-sm-2-none"><img
                                     class="header__shipping--text__icon" src="{% static 'assets/img/icon/email.png' %}"
                                     alt="email-icon"> <a class="header__shipping--text__link"
-                                    href="mailto:healthylivingkenya254@gmail.com">healthylivingkenya254@gmail.com</a></li>
+                                    href="mailto:coloradogreengardens@gmail.com">coloradogreengardens@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,7 +170,7 @@
                                     </a>
 
                                 </li>
-                                
+
                                 <li class="header__menu--items style2">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -319,7 +277,7 @@
                                     <a class="header__menu--link text-white" href="{% url 'shop' %}">Shop
                                     </a>
                                 </li>
-                                
+
                                 <li class="header__menu--items">
                                     <a class="header__menu--link text-white" href="{% url 'about' %}">About US </a>
                                 </li>
@@ -477,16 +435,16 @@
                 </div>
                 <div class="minicart__text">
                     <h3 class="minicart__subtitle h4"><a href="{{ cart_item.product.get_url }}">{{cart_item.product.name}}</a></h3>
-                    {% if cart_item.variations.all %} 
+                    {% if cart_item.variations.all %}
                     {% for item in cart_item.variations.all %}
                     <span class="color__variant"><b>{{ item.variation_category }} : </b> {{ item.variation_value }}</span>
-                    {% endfor %} 
+                    {% endfor %}
                     {% endif %}
                     <div class="minicart__price">
-                        <span class="current__price">Ksh {{cart_item.product.new_price}} -</span>
-                        <span class="old__price">Ksh {{cart_item.product.new_price}}</span>
+                        <span class="current__price">$ {{cart_item.product.new_price}} -</span>
+                        <span class="old__price">$ {{cart_item.product.new_price}}</span>
                     </div>
-                  
+
                     <div class="minicart__text--footer d-flex align-items-center">
                         <div class="quantity__box minicart__quantity">
                             <a type="button" href="{% url 'remove_cart' cart_item.product.id cart_item.id %}" class="quantity__value decrease" aria-label="quantity value"
@@ -495,7 +453,7 @@
                                 <input type="number" class="quantity__number" value="{{ cart_item.quantity }}" data-counter />
                             </label>
                             <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
-                                {% csrf_token %} 
+                                {% csrf_token %}
                                 {% for item in cart_item.variations.all %}
                                 <input type="hidden" name="{{ item.variation_category |lower }}" value="{{ item.variation_value | capfirst }}">
                                 {% endfor %}
@@ -508,9 +466,9 @@
             </div>
             {% endfor %}
         </div>
-        
+
         {% endif %}
-       
+
         <div class="minicart__button d-flex justify-content-center">
             <a class="primary__btn minicart__button--link" href="{% url 'cart' %}">View cart</a>
             <a class="primary__btn minicart__button--link" href="{% url 'checkout' %}">Checkout</a>
@@ -549,7 +507,7 @@
     <!-- End header area -->
 
     <main class="main__content_wrapper">
-        
+
         <!-- Start breadcrumb section -->
         <section class="breadcrumb__section" style="background-color: #82b440;padding-top: 2%;padding-bottom: 2%;">
             <div class="container">
@@ -572,7 +530,7 @@
         <section class="product__details--section section--padding">
             <div class="container">
                 <div class="row row-cols-lg-2 row-cols-md-2">
-                    
+
                     <div class="col">
                         <div class="product__details--media">
                             <div class="product__media--preview  swiper">
@@ -611,43 +569,43 @@
                             </div>
                          <div class="product__media--nav swiper">
                                 <div class="swiper-wrapper">
-                                   
+
                                     <div class="swiper-slide">
                                         <div class="product__media--nav__items">
                                             <img class="product__media--nav__items--img" src="{{ single_product.image1.url }}" alt="product-nav-img">
                                         </div>
                                     </div>
-                                    
-                                    {% if single_product.image2.url %} 
+
+                                    {% if single_product.image2.url %}
                                     <div class="swiper-slide">
                                         <div class="product__media--nav__items">
                                             <img class="product__media--nav__items--img" src="{{ single_product.image2.url }}" alt="product-nav-img">
                                         </div>
                                     </div>
                                     {% endif %}
-                                    
-                                    {% if single_product.image3.url %} 
+
+                                    {% if single_product.image3.url %}
                                     <div class="swiper-slide">
                                         <div class="product__media--nav__items">
                                             <img class="product__media--nav__items--img" src="{{ single_product.image3.url }}" alt="product-nav-img">
                                         </div>
                                     </div>
                                     {% endif %}
-                                    
+
                                 </div>
                                 <div class="swiper__nav--btn swiper-button-next"></div>
                                 <div class="swiper__nav--btn swiper-button-prev"></div>
-                            </div> 
+                            </div>
                         </div>
-                    </div>   
+                    </div>
                     <div class="col">
                         <div class="product__details--info">
                             <form action="#">
                                 <h2 class="product__details--info__title mb-15">{{ single_product.name }}</h2>
                                 <div class="product__details--info__price mb-10">
-                                    <span class="current__price">Ksh {{ single_product.new_price }}</span>
+                                    <span class="current__price">$ {{ single_product.new_price }}</span>
                                     <span class="price__divided"></span>
-                                    <span class="old__price">Ksh {{ single_product.old_price }}</span>
+                                    <span class="old__price">$ {{ single_product.old_price }}</span>
                                 </div>
                                 <div class="product__details--info__rating d-flex align-items-center mb-15">
                                     <ul class="rating d-flex justify-content-center">
@@ -692,7 +650,7 @@
                                 <p class="product__details--info__desc mb-15">{{ single_product.description }}</p>
                                 <div class="product__variant">
                                     <div class="product__variant--list quantity d-flex align-items-center mb-20">
-                                        
+
                                         {% if single_product.stock <= 0 %}
                                         <h5 class="text-danger">Out of Stock</h5>
                                         {% else %}
@@ -700,12 +658,12 @@
                                         <a href="#" class="btn  btn-success"> <span class="text quickview__cart--btn btn primary__btn">Added to Cart</span> <i
                                           class="fa fa-check"></i> </a>
                                         <a href="{% url  'cart' %}" class="btn  btn-success"> <span class="text quickview__cart--btn btn primary__btn">View Cart  <svg class="product__items--action__btn--svg" xmlns="http://www.w3.org/2000/svg"  width="25.51" height="23.443" viewBox="0 0 512 512"><path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg></span> <i
-                                            class="fa fa-check"></i> </a>  
+                                            class="fa fa-check"></i> </a>
                                         {% else %}
                                         <a href="{% url 'add_cart' single_product.id %}"   class="btn quickview__cart--btn btn primary__btn"> <span class="text">Add to Cart</span> <i
                                             class="fa fa-shopping-cart"></i> </a>
                                     </div>
-                                    
+
                                     {% endif %}
                                     {% endif %}
                                 </div>
@@ -724,11 +682,11 @@
                     <div class="col">
                         <ul class="product__details--tab d-flex mb-30">
                             <li class="product__details--tab__list active" data-toggle="tab" data-target="#reviews">Product Reviews</li>
-                            
+
                         </ul>
                         <div class="product__details--tab__inner border-radius-10">
                             <div class="tab_content">
-                                 
+
                                 <div id="reviews" class="tab_pane active show">
                                     <div class="product__reviews">
                                         <div class="product__reviews--header">
@@ -745,7 +703,7 @@
                                                         <div class="reviews__comment--top__left">
                                                             <h3 class="reviews__comment--content__title h4">{{review.user}}</h3>
                                                             <ul class="rating reviews__comment--rating d-flex">
-                                                                {{review.rating}} 
+                                                                {{review.rating}}
                                                                 <li class="rating__list" style="margin-left: 10%;">
                                                                     <span class="rating__list--icon">
                                                                         <svg class="rating__list--icon__svg" xmlns="http://www.w3.org/2000/svg" width="14.105" height="14.732" viewBox="0 0 10.105 9.732">
@@ -796,7 +754,7 @@
                                                 </div>
                                             </div>
                                             {% endfor %}
-                                        
+
                                         <div id="writereview" class="reviews__comment--reply__area">
                                             <form action="{% url 'submit_review' single_product.id %}" method="POST">
                                                  {% csrf_token%}
@@ -820,7 +778,7 @@
                                                     <div class="col-12 mb-10">
                                                         Review:
                                                         <textarea class="reviews__comment--reply__textarea" name="review" placeholder="Your Review...." ></textarea>
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                                 {% if user.is_authenticated %}
                                                 <input class="primary__btn" value="Submit Review" type="submit">
@@ -829,9 +787,9 @@
                                                 {% endif %}
 
                                                 {% include 'alerts.html' %}
-                                            </form>   
-                                        </div> 
-                                    </div>    
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -840,8 +798,8 @@
             </div>
         </section>
         <!-- End product details tab section -->
-        
-       
+
+
        <!-- Start product section -->
        <section class="product__section product__section--style3 section--padding">
         <div class="container product3__section--container">
@@ -866,13 +824,13 @@
                                 <span class="product__items--content__subtitle">{{product.category}}</span>
                                 <h3 class="product__items--content__title h4"><a href="{{ product.get_url }}">{{product.name}}</a></h3>
                                 <div class="product__items--price">
-                                    <span class="current__price">Ksh {{product.new_price}}</span>
+                                    <span class="current__price">$ {{product.new_price}}</span>
                                     <span class="price__divided"></span>
-                                    <span class="old__price">Ksh {{product.old_price}}</span>
+                                    <span class="old__price">$ {{product.old_price}}</span>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     {% endfor %}
                 </div>
@@ -882,7 +840,7 @@
         </div>
     </section>
     <!-- End product section -->
-    
+
    <!-- Start shipping section -->
    <section class="shipping__section shipping__style3 section--padding">
     <div class="container-fluid">
@@ -1051,7 +1009,7 @@
                         </button>
                     </h2>
                     <div class="footer__widget--inner">
-                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in <strong>Biashara Street at Nairobi CBD, Mbagathi, Nairobi Area, Kenya 254</strong>. <br> Feel free to make your order
+                        <p class="footer__widget--desc text-ofwhite mb-20">Welcome to Colorado Green Garden, your number one health shop. <br> We are located in Colorado. <br> Feel free to make your order
                             and<br> we will deliver to your doorstep.</p>
                         <div class="footer__social">
                             <h3 class="social__title text-ofwhite h4 mb-15">Follow Us</h3>
@@ -1181,14 +1139,14 @@
             <div class="footer__bottom d-flex justify-content-between align-items-center">
                 <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link"
                         href="/">Colorado Green Garden</a> . All Rights Reserved.</p>
-                
+
             </div>
         </div>
     </footer>
     <!-- End footer section -->
 
-    
-   
+
+
     <!-- Scroll top bar -->
     <button id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
@@ -1204,7 +1162,7 @@
 
 <!-- Customscript js -->
 <script src="{% static 'assets/js/script.js' %}"></script>
-  
+
 </body>
 
 </html>
