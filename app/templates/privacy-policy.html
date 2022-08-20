@@ -411,11 +411,6 @@
                     </div>
                     <div class="minicart__text">
                         <h3 class="minicart__subtitle h4"><a href="{{ cart_item.product.get_url }}">{{cart_item.product.name}}</a></h3>
-                        {% if cart_item.variations.all %} 
-                        {% for item in cart_item.variations.all %}
-                        <span class="color__variant"><b>{{ item.variation_category }} : </b> {{ item.variation_value }}</span>
-                        {% endfor %} 
-                        {% endif %}
                         <div class="minicart__price">
                             <span class="current__price">$ {{cart_item.product.new_price}} -</span>
                             <span class="old__price">$ {{cart_item.product.new_price}}</span>
