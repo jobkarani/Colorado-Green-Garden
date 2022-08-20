@@ -12,11 +12,11 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['firstname','lastname','phone','profile_photo']
-        
-class OrderForm(forms.ModelForm):
-    class Meta:
-        model = Order
-        fields = ['first_name','last_name','phone','email','county','town','order_note']
+
+# class OrderForm(forms.ModelForm):
+#     class Meta:
+#         model = Order
+#         fields = ['first_name','last_name','phone','email','county','town','order_note']
 
 class ReviewForm(forms.ModelForm):
     class Meta:

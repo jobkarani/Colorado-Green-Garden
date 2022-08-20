@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from re import U
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
@@ -10,7 +11,6 @@ from django.urls import reverse
 
 
 class NewsLetterRecipients(models.Model):
-    name = models.CharField(max_length=30)
     email = models.EmailField()
 
 
@@ -43,6 +43,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
@@ -56,7 +57,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Product(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -79,10 +79,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
-
-
-
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     cart_id = models.CharField(max_length=250, blank=False, null=True)
@@ -104,59 +100,47 @@ class CartItem(models.Model):
     def __unicode__(self):
         return self.product
 
-
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     payment_id = models.CharField(max_length=100)
     payment_method = models.CharField(max_length=100)
-    amount_paid = models.CharField(max_length=100) 
+    amount_paid = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.payment_id
 
+
 class Order(models.Model):
-    STATUS = (
-        ('New', 'New'),
-        ('Accepted', 'Accepted'),
-        ('Completed', 'Completed'),
-        ('Cancelled', 'Cancelled'),
-    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    order_id = models.CharField(max_length=250, blank=True, null=True)
+    date_added = models.DateField(auto_now_add=True)
+    paypalId = models.CharField(max_length=250, blank=False, null=True)
+    status = models.CharField(max_length=250, blank=False, null=True)
+    amount = models.FloatField()
+    currency = models.CharField(max_length=250, blank=False, null=True)
 
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
-    order_number = models.CharField(max_length=20)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=15)
-    email = models.EmailField(max_length=50)
-    county = models.CharField(max_length=50)
-    town = models.CharField(max_length=50)
-    order_note = models.CharField(max_length=100, blank=True)
-    order_total = models.FloatField()
-    status = models.CharField(max_length=10, choices=STATUS, default='New')
-    ip = models.CharField(blank=True, max_length=20)
-    is_ordered = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    def __unicode__(self):
+        return self.order_id
 
+class OrderItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
+    quantity = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+
+    def sub_total(self):
+        return self.product.new_price * self.quantity
+
+    def __unicode__(self):
+        return self.product
     def full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.user.username}'
 
     def __str__(self):
         return self.first_name
-
-class OrderProduct(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    product_price = models.FloatField()
-    ordered = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.product.name
@@ -201,8 +185,6 @@ class Account(models.Model):
     user = models.ForeignKey('Profile', on_delete=models.CASCADE)
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
     payment = models.ForeignKey('Payment', on_delete=models.CASCADE)
-
-
 
     def __str__(self):
         return self.user

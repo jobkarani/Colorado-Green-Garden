@@ -1,3 +1,4 @@
+from ast import Or
 import datetime
 from math import ceil
 from multiprocessing import context
@@ -7,6 +8,8 @@ from tokenize import Pointfloat
 from django.contrib import messages
 from django.db.models import Q
 import requests
+
+import json
 
 from .models import *
 from django.contrib.auth import login, authenticate
@@ -20,8 +23,18 @@ from django.core.exceptions import ObjectDoesNotExist
 from decouple import config
 
 from .models import MpesaPayment
+from django.views.decorators.csrf import csrf_exempt
 
-# auth 
+import string
+import random
+
+from django.conf import settings
+from django.core.mail import send_mail
+
+from app import email
+
+
+# auth
 def _cart_id(request):
     cart = request.session.session_key
     if not cart:
@@ -104,7 +117,7 @@ def create_profile(request):
     else:
         form = ProfileForm()
     return render(request, 'create_profile.html', {"form": form, "title": title})
-            
+
 
 @login_required(login_url="/accounts/login/")
 def profile(request):
@@ -113,7 +126,7 @@ def profile(request):
     profile = Profile.objects.filter(user_id=current_user.id).first()
     print(profile)
     product = Product.objects.filter(id=current_user.id).all()
-    
+
     if request.user.is_authenticated and request.user.id:
             cart_items = CartItem.objects.filter(user=request.user, is_active=True)
             products = Product.objects.all().filter(is_available=True)
@@ -142,16 +155,16 @@ def update_profile(request,id):
     form = UpdateProfileForm(instance=profile)
     if request.method == "POST":
             form = UpdateProfileForm(request.POST,request.FILES,instance=profile)
-            if form.is_valid():  
-                
+            if form.is_valid():
+
                 profile = form.save(commit=False)
                 profile.save()
-                return redirect('profile') 
-            
+                return redirect('profile')
+
     ctx = {"form":form}
     return render(request, 'update_prof.html', ctx)
 
-# pages 
+# pages
 
 def index(request, category_slug=None):
     categories = None
@@ -228,8 +241,8 @@ def product_detail(request, category_slug, product_slug):
         products = Product.objects.all().filter(is_available=True)
         reviews = ReviewRating.objects.all().filter(product_id=single_product)
         review_count = reviews.count()
-        
-        
+
+
     except Exception as e:
         raise e
 
@@ -258,7 +271,7 @@ def product_detail(request, category_slug, product_slug):
 @login_required(login_url="/accounts/login/")
 def add_cart(request, product_id):
     if request.user.is_authenticated and request.user.id:
-        product = Product.objects.get(id = product_id) 
+        product = Product.objects.get(id = product_id)
         product_variation = []
         if request.method == 'POST':
             for item in request.POST:
@@ -278,7 +291,7 @@ def add_cart(request, product_id):
             cart_item = CartItem.objects.filter(user=request.user,product=product, cart=cart)
             ex_var_list = []
             id = []
-        
+
         else:
             cart_item = CartItem.objects.create(
                 product = product,
@@ -309,7 +322,7 @@ def remove_cart(request, product_id,cart_item_id):
                 cart_item.delete()
         except:
             pass
-    
+
     return redirect('cart')
 
 @login_required(login_url="/accounts/login/")
@@ -318,9 +331,9 @@ def remove_cart_item(request, product_id, cart_item_id ):
     product = get_object_or_404(Product, id=product_id)
     cart_item = CartItem.objects.filter( id= cart_item_id)
     cart_item.delete()
-    
+
     return redirect('cart')
-    
+
 @login_required(login_url="/accounts/login/")
 def delete_cart(request):
     if request.user.is_authenticated and request.user.id:
@@ -334,18 +347,18 @@ def delete_cart(request):
     return render(request, 'cart.html',ctx)
 
 @login_required(login_url="/accounts/login/")
-def cart(request, total=0, quantity=0, cart_items=None): 
+def cart(request, total=0, quantity=0, cart_items=None):
     if request.user.is_authenticated and request.user.id:
         try:
             sub_total = 0
             cart_items = CartItem.objects.filter(user=request.user, is_active=True)
             products = Product.objects.all().filter(is_available=True)
                 # cart_count = cart_items.count()
-            
+
             for cart_item in cart_items:
                 total += (cart_item.product.new_price * cart_item.quantity)
                 quantity += cart_item.quantity
-                sub_total = total 
+                sub_total = total
         except ObjectDoesNotExist:
             pass #just ignore
     else:
@@ -367,11 +380,11 @@ def cart(request, total=0, quantity=0, cart_items=None):
             cart = Cart.objects.get(user=request.user,cart_id=_cart_id(request))
             cart_items = CartItem.objects.filter(user=request.user,cart=cart,is_active=True)
             products = Product.objects.all().filter(is_available=True)
-        
+
             for cart_item in cart_items:
                 grand_total += (cart_item.product.new_price *cart_item.quantity)
-            
-       
+
+
     except ObjectDoesNotExist:
         pass
     cart_count = cart_items.count()
@@ -397,9 +410,9 @@ def search(request):
             products= Product.objects.order_by('-name').filter(Q(description__icontains=keyword) | Q(name__icontains=keyword))
             product_count = products.count()
         elif keyword != keyword :
-           
+
             return HttpResponse('Ooops no products found with that keyword :(  Try another Keyword :)')
-    
+
     ctx={
         'products':products,
         'product_count':product_count,
@@ -433,10 +446,11 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         'products':products,
     }
     return render(request, 'checkout.html',ctx)
-                
+
 @login_required(login_url="/accounts/login/")
 def payments(request,total=0, quantity=0, cart_items=None):
     if request.user.is_authenticated and request.user.id:
+        prof = Profile.objects.get(user = request.user)
         cart_items = CartItem.objects.filter(user=request.user, is_active=True)
         products = Product.objects.all().filter(is_available=True)
         cart_count = cart_items.count()
@@ -454,62 +468,63 @@ def payments(request,total=0, quantity=0, cart_items=None):
         'quantity':quantity,
         'cart_items':cart_items,
         'cart_count':cart_count,
-        'products':products
+        'products':products,
+        "user":prof.user.id
     }
     return render(request, 'payments.html', ctx)
 
-@login_required(login_url="/accounts/login/")
-def place_order(request,total=0, quantity=0,):
-    current_user = request.user
+# @login_required(login_url="/accounts/login/")
+# def place_order(request,total=0, quantity=0,):
+#     current_user = request.user
 
-    cart_items = CartItem.objects.filter(user=current_user)
-    cart_count = cart_items.count()
-    if cart_count <= 0:
-        return redirect('shop')
-    for cart_item in cart_items:
-        total += (cart_item.product.new_price*cart_item.quantity)
-        quantity += cart_item.quantity
-        total = total
+#     cart_items = CartItem.objects.filter(user=current_user)
+#     cart_count = cart_items.count()
+#     if cart_count <= 0:
+#         return redirect('shop')
+#     for cart_item in cart_items:
+#         total += (cart_item.product.new_price*cart_item.quantity)
+#         quantity += cart_item.quantity
+#         total = total
 
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            # store all billing info 
-            data = Order()
-            data.user = current_user
-            data.first_name = form.cleaned_data['first_name']
-            data.last_name = form.cleaned_data['last_name']
-            data.phone = form.cleaned_data['phone']
-            data.email = form.cleaned_data['email']
-            data.county = form.cleaned_data['county']
-            data.town = form.cleaned_data['town']
-            data.order_note = form.cleaned_data['order_note']
-            data.order_total = total
-            data.ip = request.META.get('REMOTE_ADDR')
-            data.save()
+#     if request.method == 'POST':
+#         form = OrderForm(request.POST)
+#         if form.is_valid():
+#             # store all billing info
+#             data = Order()
+#             data.user = current_user
+#             data.first_name = form.cleaned_data['first_name']
+#             data.last_name = form.cleaned_data['last_name']
+#             data.phone = form.cleaned_data['phone']
+#             data.email = form.cleaned_data['email']
+#             data.county = form.cleaned_data['county']
+#             data.town = form.cleaned_data['town']
+#             data.order_note = form.cleaned_data['order_note']
+#             data.order_total = total
+#             data.ip = request.META.get('REMOTE_ADDR')
+#             data.save()
 
-            # generate order number 
-            yr = int(datetime.date.today().strftime('%Y'))
-            dt = int(datetime.date.today().strftime('%d'))
-            mt = int(datetime.date.today().strftime('%m'))
-            d = datetime.date(yr,mt,dt)
-            current_date = d.strftime("%Y%m%d") #20210305
-            order_number = current_date + str(data.id)
-            data.order_number = order_number
-            data.save()
-            # return redirect('checkout')
+#             # generate order number
+#             yr = int(datetime.date.today().strftime('%Y'))
+#             dt = int(datetime.date.today().strftime('%d'))
+#             mt = int(datetime.date.today().strftime('%m'))
+#             d = datetime.date(yr,mt,dt)
+#             current_date = d.strftime("%Y%m%d") #20210305
+#             order_number = current_date + str(data.id)
+#             data.order_number = order_number
+#             data.save()
+#             # return redirect('checkout')
 
-        order = Order.objects.get(user=current_user,is_ordered=False,order_number=order_number)
-        ctx = {
-            'order':order,
-            'cart_items':cart_items,
-            'total':total,
-            'cart':cart,
-        }
-        return render(request, 'confirm.html',ctx)
+#         order = Order.objects.get(user=current_user,is_ordered=False,order_number=order_number)
+#         ctx = {
+#             'order':order,
+#             'cart_items':cart_items,
+#             'total':total,
+#             'cart':cart,
+#         }
+#         return render(request, 'confirm.html',ctx)
 
-    else:
-        return redirect('checkout')
+#     else:
+#         return redirect('checkout')
 
 
 def submit_review(request, product_id):
@@ -534,7 +549,45 @@ def submit_review(request, product_id):
                 data.save()
                 messages.success(request, 'Thank you! Your review has been submitted.')
                 return redirect(url)
+    return redirect("/")
+
+@csrf_exempt
+@login_required(login_url="/accounts/login/")
+def updateOrder(request):
+    body=request.body.decode('utf-8')
+    jsonBody = json.loads(body)
+    user = User.objects.get(username=jsonBody["user"])
+    cartItems = CartItem.objects.filter(user = user)
+    letters = string.ascii_lowercase
+    order = Order(
+        user = user, order_id =''.join(random.choice(letters) for i in range(10)),
+        paypalId = jsonBody["details"]["id"], status=jsonBody["details"]["status"],
+        amount = jsonBody["details"]["purchase_units"][0]["amount"]["value"],
+        currency = jsonBody["details"]["purchase_units"][0]["amount"]["currency_code"])
+    order.save()
+    for cartItem in cartItems:
+        product = Product.objects.get(id = cartItem.product.id)
+        orderItems = OrderItem(
+            user = user, product = product, order = order,
+            quantity = cartItem.quantity)
+        orderItems.save()
+    sendEmails("NEW ORDER", "There is a new order, kindly check admin",
+        [settings.EMAIL_HOST_USER])
+
+    sendEmails("ORDER ACCEPTED", "Dear {} We have received your order and we are working diligently to deliver your product!",
+        [request.user.email])
 
 
+def sendEmails(subject, message, recipients):
+    email_from = settings.EMAIL_HOST_USER
+    send_mail( subject, message, email_from, recipients)
 
-        
+
+def subscribeToNewsLetter(request):
+    if request.method == "GET":
+        query = request.GET.get('email')
+        if query == '':
+            print("Empty query")
+        else:
+            NewsLetterRecipients(email = query)
+    return redirect("/")

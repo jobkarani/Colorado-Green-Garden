@@ -12,7 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 class CartAdmin(admin.ModelAdmin):
     list_display = ('user','cart_id', 'date_added')
-    
+
 class CartItemAdmin(admin.ModelAdmin):
     list_display = ('product', 'cart', 'quantity', 'user', 'is_active')
 
@@ -26,5 +26,5 @@ admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem, CartItemAdmin)
 admin.site.register(Payment)
 admin.site.register(Order)
-admin.site.register(OrderProduct)
+admin.site.register(OrderItem)
 admin.site.register(ReviewRating)
