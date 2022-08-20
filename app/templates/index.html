@@ -448,10 +448,6 @@
                                 <input type="number" class="quantity__number" value="{{ cart_item.quantity }}" data-counter />
                             </label>
                             <form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
-                                {% csrf_token %} 
-                                {% for item in cart_item.variations.all %}
-                                <input type="hidden" name="{{ item.variation_category |lower }}" value="{{ item.variation_value | capfirst }}">
-                                {% endfor %}
                                 <button type="submit" class="quantity__value" aria-label="quantity value" value="Increase Value">+</button>
                             </form>
                         </div>
@@ -543,14 +539,14 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="hero__slider--items__inner">
-                                            <div class="slider__content">
+                                            <div class="slider__content ayub__left">
                                                 <p class="slider__content--desc desc1 mb-15"><img
                                                         class="slider__text--shape__icon"
                                                         src="{% static 'assets/img/icon/text-shape-icon.png' %}" alt="text-shape-icon">
                                                         New Vapes </p>
                                                 <h2 class="slider__content--maintitle h1">Express <br>
                                                     Delivery Service</h2>
-                                                <p class="slider__content--desc desc2 d-sm-2-none mb-40 ">Its ideal for drinking, cooking, smoking and other ways. <br>
+                                                <p class="slider__content--desc desc2 d-sm-2-none mb-40">Its ideal for drinking, cooking, smoking and other ways. <br>
                                                     The products are popular in 42 countries.</p>
                                                 <a class="primary__btn slider__btn" href="{% url 'shop' %}">Show Products
                                                     <svg class="slider__btn--arrow__icon"
