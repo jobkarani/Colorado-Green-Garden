@@ -37,6 +37,8 @@ header .head{
 }
 .offcanvas__stikcy--toolbar__label .items__count{
     background: #82b440;
+    display: none;
+    visibility: hidden;
 }
 .minicart__conditions--link{
     color: #82b440;

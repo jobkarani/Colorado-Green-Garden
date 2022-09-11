@@ -2243,10 +2243,11 @@ body.overlay__active::before {
   color: var(--white-color);
 }
 .offcanvas__stikcy--toolbar__label {
-  display: block;
   font-size: 1.2rem;
   font-weight: 600;
   margin-top: 6px;
+  display: none;
+  visibility: hidden;
 }
 .header__sticky.sticky {
   position: fixed;
